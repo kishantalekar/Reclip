@@ -1,6 +1,6 @@
-import { dummyCards } from "@/app/constants";
 import Header from "@/components/Header";
 import VideoCard from "@/components/VideoCard";
+import { dummyCards } from "@/constants";
 
 const page = async ({ params }: ParamsWithSearch) => {
   const { id } = await params;

@@ -1,11 +1,14 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const user = {};
 const Navbar = () => {
   const router = useRouter();
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
   return (
     <header className="navbar">
       <nav>
@@ -20,16 +23,19 @@ const Navbar = () => {
         </Link>
         {user && (
           <figure>
-            <button onClick={() => router.push("/profile/123445")}>
+            <button onClick={() => router.push(`/profile/${user.id}`)}>
               <Image
-                src={"/assets/images/dummy.jpg"}
+                src={user.image ?? "/assets/images/dummy.jpg"}
                 alt={"User"}
                 width={36}
                 height={36}
                 className="rounded-full aspect-square"
               />
             </button>
-            <button className="cursor-pointer">
+            <button
+              className="cursor-pointer"
+              onClick={() => router.push("/sign-in")}
+            >
               <Image
                 src={"/assets/icons/logout.svg"}
                 alt={"logout"}

@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://kishan-talekar-s-workspace-i2rf18.us-east-1.xata.sh/db/snapcast",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
