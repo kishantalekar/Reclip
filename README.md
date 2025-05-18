@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Loom - Video Recording and Sharing Platform
+
+Loom is a modern web application built with Next.js that enables users to record, upload, and share screen recordings and video content. It provides a seamless experience for creating and managing video content with features like screen recording, video playback, and user authentication.
+
+## Features
+
+- **Screen Recording**: Built-in screen recording functionality
+- **Video Upload**: Support for uploading video content
+- **User Authentication**: Secure user authentication system
+- **Video Management**: Create, view, and manage video content
+- **Responsive Design**: Mobile-friendly user interface
+- **Profile Management**: User profile customization
+
+## Tech Stack
+
+- **Frontend**: Next.js 15.3.2, React 19
+- **Styling**: TailwindCSS 4
+- **Authentication**: Custom auth implementation with better-auth
+- **Database**: PostgreSQL with Drizzle ORM
+- **API Integration**: Xata Client
+- **Type Safety**: TypeScript
+
+## Project Structure
+
+```
+├── app/                  # Next.js app directory
+│   ├── (auth)/          # Authentication routes
+│   ├── (root)/          # Main application routes
+│   └── api/             # API endpoints
+├── components/          # Reusable UI components
+├── lib/                 # Core utilities and hooks
+│   ├── actions/         # Server actions
+│   ├── hooks/           # Custom React hooks
+│   └── utils/           # Utility functions
+├── public/              # Static assets
+└── drizzle/             # Database schema and config
+```
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   Create a `.env` file with required configurations
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+4. Run the development server:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Components
 
-## Learn More
+- **RecordScreen**: Handles screen recording functionality
+- **VideoPlayer**: Custom video playback component
+- **VideoCard**: Displays video previews and metadata
+- **Header**: Main navigation and user interface
+- **FormField**: Reusable form input components
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Uses Next.js App Router for routing
+- Implements server-side rendering for better performance
+- Follows TypeScript best practices for type safety
+- Utilizes custom hooks for screen recording and file handling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The application can be deployed on Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push your code to a Git repository
+2. Import the project to Vercel
+3. Configure environment variables
+4. Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
