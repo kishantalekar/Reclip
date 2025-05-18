@@ -48,6 +48,42 @@ const Page = () => {
     }
   }, [video.duration]);
 
+  useEffect(() => {
+    const checkForRecordedVideo = async () => {
+      try {
+        const stored = sessionStorage.getItem("recordedVideo");
+        if (!stored) return;
+        const { url, name, type, duration } = JSON.parse(stored);
+        const blob = await fetch(url).then((res) => res.blob());
+        const file = new File([blob], name, { type, lastModified: Date.now() });
+
+        if (video.inputRef.current) {
+          const dateTransfer = new DataTransfer();
+          dateTransfer.items.add(file);
+          video.inputRef.current.files = dateTransfer.files;
+          const event = new Event("change", { bubbles: true });
+          video.inputRef.current.dispatchEvent(event);
+
+          video.handleFileChange({
+            target: {
+              files: dateTransfer.files,
+            },
+          } as ChangeEvent<HTMLInputElement>);
+        }
+        if (duration) {
+          setVideoDuration(duration);
+        }
+
+        sessionStorage.removeItem("recordedVideo");
+
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    checkForRecordedVideo();
+  }, [video]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("Error");
@@ -99,7 +135,7 @@ const Page = () => {
         ...formData,
         duration: videoDuration,
       });
-      router.push(`/video/${videoId}`);
+      router.push("/");
     } catch (error) {
       console.log("error submitting form", error);
     } finally {
